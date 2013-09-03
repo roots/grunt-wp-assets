@@ -1,6 +1,6 @@
 {
   "name": "grunt-assets",
-  "description": "Version , search and replace assets task for Grunt.",
+  "description": "WordPress assets revving.",
   "version": "0.1.0",
   "homepage": "https://github.com/hariadi/grunt-assets",
   "author": {
@@ -24,11 +24,8 @@
   "engines": {
     "node": "*"
   },
-  "dependencies": {
-    "grunt": "~0.4.1"
-  },
   "devDependencies": {
-    "grunt": "*"
+    "grunt": "~0.4.1"
   },
   "keywords": [
     "gruntplugin"
