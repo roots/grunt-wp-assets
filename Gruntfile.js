@@ -5,8 +5,8 @@ module.exports = function(grunt) {
 
     assets: {
       theme: {
-          src: ['scripts.php'],
-          dest: 'script2.php'
+          src: ['test/scripts.php'],
+          dest: 'test/script2.php'
         }
       },
 
