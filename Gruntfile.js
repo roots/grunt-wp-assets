@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
 
 
-    assets: {
+    wp_rev: {
       assets: {
         //src: ['test/assets/css/{,*/}*.css',
         //      'test/assets/css/{,*/}*.js',],
@@ -33,6 +33,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Register tasks
-  grunt.registerTask('default', [ 'clean', 'assets',]);
+  grunt.registerTask('default', [ 'clean', 'wp_rev',]);
 
 };

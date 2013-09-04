@@ -16,7 +16,7 @@ var crypto = require('crypto');
 module.exports = function(grunt) {
 
 
-  grunt.registerMultiTask('assets', 'WordPress assets revving', function() {
+  grunt.registerMultiTask('wp_rev', 'WordPress assets revving', function() {
 
     var done = this.async();
     var dest = this.data.dest;
