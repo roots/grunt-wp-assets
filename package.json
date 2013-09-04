@@ -1,23 +1,23 @@
 {
-  "name": "grunt-assets",
+  "name": "grunt-wp-assets",
   "description": "WordPress assets revving.",
   "version": "0.1.0",
-  "homepage": "https://github.com/hariadi/grunt-assets",
+  "homepage": "https://github.com/hariadi/grunt-wp-assets",
   "author": {
     "name": "Hariadi Hinta",
     "url": "http://hariadi.org"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hariadi/grunt-assets.git"
+    "url": "git://github.com/hariadi/grunt-wp-assets.git"
   },
   "bugs": {
-    "url": "https://github.com/hariadi/grunt-assets/issues"
+    "url": "https://github.com/hariadi/grunt-wp-assets/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/hariadi/grunt-assets"
+      "url": "https://github.com/hariadi/grunt-wp-assets"
     }
   ],
   "main": "tasks/assets.js",
