@@ -5,7 +5,7 @@
   "homepage": "https://github.com/hariadi/grunt-wp-assets",
   "author": {
     "name": "Hariadi Hinta",
-    "url": "http://hariadi.org"
+    "url": "https://github.com/hariadi"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,12 @@
       "url": "https://github.com/hariadi/grunt-wp-assets"
     }
   ],
+  "scripts": {
+    "test": "grunt"
+  },
   "main": "tasks/assets.js",
   "engines": {
-    "node": "*"
+    "node": ">=0.8.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -32,6 +35,11 @@
     "grunt-contrib-jshint": "~0.6.4"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "wordpress",
+    "wp-assets",
+    "wp-rev",
+    "rev",
   ]
+  
 }
