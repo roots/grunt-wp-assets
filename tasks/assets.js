@@ -2,7 +2,9 @@
  * grunt-assets-wp
  * https://github.com/hariadi/grunt-assets-wp
  *
- * Base from roots: https://github.com/roots/roots/blob/master/tasks/version.js
+ * Base from:
+ * https://github.com/roots/roots/blob/master/tasks/version.js
+ * https://github.com/yeoman/grunt-filerev
  *
  * Copyright (c) 2013 Hariadi Hinta
  * Licensed under the MIT license.
@@ -41,7 +43,7 @@ module.exports = function(grunt) {
         var suffix = hash.slice(0, options.length);
         var ext = path.extname(file);
         var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
-        
+
         // Copy/rename file base on hash and format
         var resultPath = path.resolve(path.dirname(file), newName);
         if (options.rename) {
@@ -52,7 +54,9 @@ module.exports = function(grunt) {
 
         // Get target, find and change references assets to new hashed. 
         var wpcontent = grunt.file.read(dest);
-        wpcontent = wpcontent.replace(new RegExp(name, "g"), newName);
+        var match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g");
+        var re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
+        wpcontent = wpcontent.replace(re, newName);
         
         grunt.file.write(dest, wpcontent);
         grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
