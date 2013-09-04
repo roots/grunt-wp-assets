@@ -15,7 +15,7 @@ var crypto = require('crypto');
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('wp_rev', 'WordPress assets revving', function() {
+  grunt.registerMultiTask('wprev', 'WordPress assets revving', function() {
 
     var done = this.async();
     var dest = this.data.dest;
@@ -31,31 +31,31 @@ module.exports = function(grunt) {
 
       files.src.forEach(function (file) {
 
-      if (file.length === 0) {
-        grunt.log.warn('src does not exists');
-        return false;
-      }
-      var name = path.basename(file);
-      var content = grunt.file.read(file);
-      var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
-      var suffix = hash.slice(0, options.length);
-      var ext = path.extname(file);
-      var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
-      
-      // Copy/rename file base on hash and format
-      var resultPath = path.resolve(path.dirname(file), newName);
-      if (options.rename) {
-        fs.renameSync(file, resultPath);
-      } else {
-        grunt.file.copy(file, resultPath);
-      }
+        if (file.length === 0) {
+          grunt.log.warn('src does not exists');
+          return false;
+        }
+        var name = path.basename(file);
+        var content = grunt.file.read(file);
+        var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
+        var suffix = hash.slice(0, options.length);
+        var ext = path.extname(file);
+        var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
+        
+        // Copy/rename file base on hash and format
+        var resultPath = path.resolve(path.dirname(file), newName);
+        if (options.rename) {
+          fs.renameSync(file, resultPath);
+        } else {
+          grunt.file.copy(file, resultPath);
+        }
 
-      // Get target, find and change references assets to new hashed. 
-      var wpcontent = grunt.file.read(dest);
-      wpcontent = wpcontent.replace(new RegExp(name, "g"), newName);
-      
-      grunt.file.write(dest, wpcontent);
-      grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
+        // Get target, find and change references assets to new hashed. 
+        var wpcontent = grunt.file.read(dest);
+        wpcontent = wpcontent.replace(new RegExp(name, "g"), newName);
+        
+        grunt.file.write(dest, wpcontent);
+        grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
 
       });
 

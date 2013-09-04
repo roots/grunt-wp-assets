@@ -3,17 +3,46 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    wp_rev: {
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: [
+        'Gruntfile.js',
+        'tasks/*.js',
+        'test/*/*.js'
+      ]
+    },
+
+    wprev: {
       assets: {
-        src: ['test/assets/css/main.min.css',
-              'test/assets/js/scripts.min.js',],
-        dest: 'test/script2.php'
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/script2.php'
+      },
+      withConfig: {
+        options: {
+          algorithm: 'sha1',
+          length: 4
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/index.html'
+      },
+    },
+
+    simplemocha: {
+      options: {
+        reporter: 'spec'
+      },
+      test: {
+        src: 'test/*.js'
       }
     },
 
     clean: {
       //tests: ['test/assets/{css,js}/{main,scripts}.min.*.css']
-      tests: ['test/assets/{css,js}/*.{main,scripts}.min.css']
+      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.css']
     },
 
 
@@ -22,8 +51,11 @@ module.exports = function(grunt) {
   // Load tasks
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Register tasks
-  grunt.registerTask('default', [ 'clean', 'wp_rev',]);
+  grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha']);
 
 };
