@@ -37,34 +37,26 @@ module.exports = function(grunt) {
         grunt.log.warn('src does not exists');
         return false;
       }
-
+      var name = path.basename(file);
       var content = grunt.file.read(file);
       var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
       var suffix = hash.slice(0, options.length);
       var ext = path.extname(file);
       var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
-      console.log(newName);
+      console.log(name);
 
       var resultPath = path.resolve(path.dirname(file), newName);
-      
 
+      // Copy/rename file base on hash and format
       if (options.rename) {
         fs.renameSync(file, resultPath);
       } else {
         grunt.file.copy(file, resultPath);
       }
 
-      var regex;
-      if (ext === '.css') {
-        regex = /(wp_enqueue_style(\s*[^,]+,){3})\s*[^,]+,\s*([^\)]+)\);/;
-      } else {
-        regex = /(wp_register_script(\s*[^,]+,){3})\s*[^,]+,\s*([^\)]+)\);/;
-      }
-
+      // Change references assets to new hashed. 
       var wpcontent = grunt.file.read(dest);
-      wpcontent = wpcontent.replace(regex, "\$1 '" + hash + "', \$3);");
-
-      //dest = (typeof dest === 'undefined') ? file : dest;
+      wpcontent = wpcontent.replace(new RegExp(name, "g"), newName);
       
       grunt.file.write(dest, wpcontent);
       grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
