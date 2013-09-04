@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
 
     assets: {
-      images: {
+      assets: {
         //src: ['test/assets/css/{,*/}*.css',
         //      'test/assets/css/{,*/}*.js',],
         src: ['test/assets/css/main.min.css',
@@ -21,7 +21,8 @@ module.exports = function(grunt) {
     }
     */
     clean: {
-      tests: ['test/assets/{css,js}/{main,scripts}.min.*.css']
+      //tests: ['test/assets/{css,js}/{main,scripts}.min.*.css']
+      tests: ['test/assets/{css,js}/*.{main,scripts}.min.css']
     },
 
 

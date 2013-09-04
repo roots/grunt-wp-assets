@@ -23,7 +23,9 @@ module.exports = function(grunt) {
     var options = this.options({
       encoding: 'utf8',
       algorithm: 'md5',
-      length: 8
+      format: true,
+      length: 8,
+      rename: false
     });
     
  
@@ -37,17 +39,20 @@ module.exports = function(grunt) {
       }
 
       var content = grunt.file.read(file);
-
       var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
-
       var suffix = hash.slice(0, options.length);
       var ext = path.extname(file);
-      console.log(ext);
-      var newName = [path.basename(file, ext), suffix, ext.slice(1)].join('.');
+      var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
+      console.log(newName);
 
       var resultPath = path.resolve(path.dirname(file), newName);
-      console.log(resultPath);
-      fs.renameSync(file, resultPath);
+      
+
+      if (options.rename) {
+        fs.renameSync(file, resultPath);
+      } else {
+        grunt.file.copy(file, resultPath);
+      }
 
       var regex;
       if (ext === '.css') {
