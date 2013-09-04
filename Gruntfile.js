@@ -13,26 +13,25 @@ module.exports = function(grunt) {
               'test/assets/css/scripts.min.js',],
         dest: 'test/script2.php'
       }
-    }
+    },
 
     /*
     assets: {
       src: ['scripts.php'],
     }
     */
-
+    clean: {
+      tests: ['test/assets/{css,js}/{main,scripts}.min.*.css']
+    },
 
 
   });
 
   // Load tasks
   grunt.loadTasks('tasks');
-
-  //grunt.loadNpmTasks('grunt-filerev');
-
-  
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Register tasks
-  grunt.registerTask('default', ['assets',]);
+  grunt.registerTask('default', [ 'clean', 'assets',]);
 
 };
