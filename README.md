@@ -1,10 +1,10 @@
-# grunt-wp-assets
+# grunt-wp-assets [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
 
 > WordPress assets revisioning
 
 ## Overview
 
-Grunt.js plugin that searches requested WordPress static asset, revisioning, and update static asset reference in given target.
+Grunt.js plugin that searches requested WordPress static asset, revisioning, and update static asset reference in given target (tested in `wp_enqueue_style` and `wp_register_script`).
 
 
 ## Installation
