@@ -15,7 +15,6 @@ var crypto = require('crypto');
 
 module.exports = function(grunt) {
 
-
   grunt.registerMultiTask('wp_rev', 'WordPress assets revving', function() {
 
     var done = this.async();
@@ -27,7 +26,6 @@ module.exports = function(grunt) {
       length: 8,
       rename: false
     });
-    
  
     this.files.forEach(function(files) {
 
@@ -43,18 +41,16 @@ module.exports = function(grunt) {
       var suffix = hash.slice(0, options.length);
       var ext = path.extname(file);
       var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
-      console.log(name);
-
-      var resultPath = path.resolve(path.dirname(file), newName);
-
+      
       // Copy/rename file base on hash and format
+      var resultPath = path.resolve(path.dirname(file), newName);
       if (options.rename) {
         fs.renameSync(file, resultPath);
       } else {
         grunt.file.copy(file, resultPath);
       }
 
-      // Change references assets to new hashed. 
+      // Get target, find and change references assets to new hashed. 
       var wpcontent = grunt.file.read(dest);
       wpcontent = wpcontent.replace(new RegExp(name, "g"), newName);
       
