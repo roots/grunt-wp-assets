@@ -23,12 +23,10 @@ module.exports = function(grunt) {
     var options = this.options({
       encoding: 'utf8',
       algorithm: 'md5',
-      length: 8,
+      length: 8
     });
-
-    var regexCss = /(wp_enqueue_style(\s*[^,]+,){2})\s*[^\)]+\);/;
-    var regexJs = /(wp_register_script(\s*[^,]+,){2})\s*[^,]+,\s*([^\)]+)\);/;
-
+    
+ 
     this.files.forEach(function(files) {
 
       files.src.forEach(function (file) {
@@ -39,18 +37,31 @@ module.exports = function(grunt) {
       }
 
       var content = grunt.file.read(file);
+
       var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
+
       var suffix = hash.slice(0, options.length);
       var ext = path.extname(file);
+      console.log(ext);
       var newName = [path.basename(file, ext), suffix, ext.slice(1)].join('.');
 
-      var updated = content.replace(regexCss, "\$1 '" + hash + "');");
-      var updated = content.replace(regexJs, "\$1 '" + hashJs + "', " + "\$3);");
+      var resultPath = path.resolve(path.dirname(file), newName);
+      console.log(resultPath);
+      fs.renameSync(file, resultPath);
 
+      var regex;
+      if (ext === '.css') {
+        regex = /(wp_enqueue_style(\s*[^,]+,){3})\s*[^,]+,\s*([^\)]+)\);/;
+      } else {
+        regex = /(wp_register_script(\s*[^,]+,){3})\s*[^,]+,\s*([^\)]+)\);/;
+      }
 
-      dest = (typeof dest === 'undefined') ? file : dest;
+      var wpcontent = grunt.file.read(dest);
+      wpcontent = wpcontent.replace(regex, "\$1 '" + hash + "', \$3);");
+
+      //dest = (typeof dest === 'undefined') ? file : dest;
       
-      grunt.file.write(dest, updated);
+      grunt.file.write(dest, wpcontent);
       grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
 
       });

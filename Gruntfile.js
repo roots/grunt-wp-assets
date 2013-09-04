@@ -3,12 +3,17 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+
+
     assets: {
-      theme: {
-          src: ['test/scripts.php'],
-          dest: 'test/script2.php'
-        }
-      },
+      images: {
+        //src: ['test/assets/css/{,*/}*.css',
+        //      'test/assets/css/{,*/}*.js',],
+        src: ['test/assets/css/main.min.css',
+              'test/assets/css/scripts.min.js',],
+        dest: 'test/script2.php'
+      }
+    }
 
     /*
     assets: {
