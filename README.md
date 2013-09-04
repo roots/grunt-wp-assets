@@ -95,4 +95,4 @@ Default: `8`
 The number of characters of the file hash to prefix the file name with.
 
 
-## Summary
+[MIT License](LICENSE-MIT)
