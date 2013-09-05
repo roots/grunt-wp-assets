@@ -27,7 +27,7 @@ grunt.loadNpmTasks('grunt-wp-assets');
 
 
 ```javascript
-wp_rev: {
+wprev: {
   assets: {
     src: ['path/to/style.css',
           'path/to/scripts.js',],
@@ -41,7 +41,7 @@ wp_rev: {
 
 
 ```javascript
-wp_rev: {
+wprev: {
   assets: {
 	options: {
 		  algorithm: 'sha1',
