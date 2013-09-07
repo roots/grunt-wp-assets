@@ -64,7 +64,7 @@ wprev: {
 Type: `Boolean`  
 Default: `false`
 
-It will update the `dest` target instead of copy:
+It will rename the `src` target instead of copy.
 
 #### format
 
@@ -90,7 +90,7 @@ Default: `'md5'`
 #### length
 
 Type: `Number`  
-Default: `8`
+Default: `4`
 
 The number of characters of the file hash to prefix the file name with.
 
