@@ -11,21 +11,22 @@
  */
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var crypto = require('crypto');
+var fs = require('fs')
+  , path = require('path')
+  , crypto = require('crypto');
 
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('wprev', 'WordPress assets revving', function() {
-    var dest = this.data.dest;
-    var options = this.options({
-      encoding: 'utf8',
-      algorithm: 'md5',
-      format: true,
-      length: 8,
-      rename: false
-    });
+
+    var dest = this.data.dest
+      , options = this.options({
+          encoding: 'utf8',
+          algorithm: 'md5',
+          format: true,
+          length: 8,
+          rename: false
+        });
  
     this.files.forEach(function(files) {
 
@@ -35,12 +36,14 @@ module.exports = function(grunt) {
           grunt.log.warn('src does not exists');
           return false;
         }
-        var name = path.basename(file);
-        var content = grunt.file.read(file);
-        var hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex');
-        var suffix = hash.slice(0, options.length);
-        var ext = path.extname(file);
-        var newName = options.format ? [suffix, path.basename(file, ext), ext.slice(1)].join('.') : [path.basename(file, ext), suffix, ext.slice(1)].join('.');
+
+        var basename = path.basename
+          , name = basename(file)
+          , content = grunt.file.read(file)
+          , hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex')
+          , suffix = hash.slice(0, options.length)
+          , ext = path.extname(file)
+          , newName = options.format ? [suffix, basename(file, ext), ext.slice(1)].join('.') : [basename(file, ext), suffix, ext.slice(1)].join('.');
 
         // Copy/rename file base on hash and format
         var resultPath = path.resolve(path.dirname(file), newName);
@@ -51,16 +54,14 @@ module.exports = function(grunt) {
         }
 
         // Get target, find and change references assets to new hashed. 
-        var wpcontent = grunt.file.read(dest);
-        var match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g");
-        var re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
+        var wpcontent = grunt.file.read(dest)
+          , match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g")
+          , re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
         wpcontent = wpcontent.replace(re, newName);
         
         grunt.file.write(dest, wpcontent);
         grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
-
       });
-
     });
   });
 };
