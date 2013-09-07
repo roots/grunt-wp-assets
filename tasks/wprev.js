@@ -18,8 +18,6 @@ var crypto = require('crypto');
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('wprev', 'WordPress assets revving', function() {
-
-    var done = this.async();
     var dest = this.data.dest;
     var options = this.options({
       encoding: 'utf8',
@@ -64,8 +62,5 @@ module.exports = function(grunt) {
       });
 
     });
-
-
-    done();
   });
 };
