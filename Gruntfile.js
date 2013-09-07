@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       withConfig: {
         options: {
           algorithm: 'sha1',
-          length: 4
+          length: 8
         },
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
@@ -41,8 +41,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      //tests: ['test/assets/{css,js}/{main,scripts}.min.*.css']
-      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.css']
+      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.{css,js}',]
     },
 
 
