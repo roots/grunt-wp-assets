@@ -60,7 +60,8 @@ module.exports = function(grunt) {
         wpcontent = wpcontent.replace(re, newName);
         
         grunt.file.write(dest, wpcontent);
-        grunt.log.writeln('  ' + file.grey + (' changed to ') + newName.green);
+        var status = (options.rename) ? ' rename' : ' change';
+        grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
       });
     });
   });
