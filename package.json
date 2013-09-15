@@ -34,6 +34,9 @@
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-jshint": "~0.6.4"
   },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
   "keywords": [
     "gruntplugin",
     "wordpress",
@@ -41,5 +44,4 @@
     "wp-rev",
     "rev"
   ]
-  
 }

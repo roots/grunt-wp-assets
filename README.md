@@ -1,15 +1,16 @@
-# grunt-wp-assets [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
+# grunt-wp-assets v0.1.3 [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
 
-> WordPress assets revisioning
+> WordPress assets revisioning.
 
-## Overview
+### Overview
 
 Grunt.js plugin that searches requested WordPress static asset, revisioning, and update static asset reference in given target (tested in `wp_enqueue_style` and `wp_register_script`).
 
 
-## Installation
+#### Getting Started
+This plugin requires Grunt `~0.4.0`
 
-Install this grunt plugin next to your project's gruntfile with:
+Install this plugin with this command:
 
 ```shell
 npm install grunt-wp-assets --save-dev
@@ -21,9 +22,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-wp-assets');
 ```
 
-## Documentation
 
-### Example (defaut config)
+
+## Wprev task
+_Run this task with the `grunt wprev` command._
+
+  ### Usage Examples
+
+#### defaut config
 
 
 ```javascript
@@ -39,18 +45,18 @@ wprev: {
 
 This example task will copy `path/to/style.css` to `assets/css/{md5hash}.style.css` and `path/to/scripts.js` to `path/to/{md5hash}.scripts.js` and update assets referecnce in `path/to/target.php`.
 
-### Example with config
+#### Custom config
 
 
 ```javascript
 wprev: {
   assets: {
-	options: {
-		  algorithm: 'sha1',
-		  length: 4,
-		  format: false,
-		  rename: true
-	},
+  options: {
+      algorithm: 'sha1',
+      length: 4,
+      format: false,
+      rename: true
+  },
     src: ['assets/css/main.min.css',
           'assets/js/scripts.min.js',],
     dest: 'scripts.php'
@@ -60,7 +66,6 @@ wprev: {
 ```
 
 This example task will rename `assets/css/main.min.css` to `assets/css/main.min.{sha1hash}.css` and `assets/js/scripts.min.js` to `assets/js/scripts.min.{sha1hash}.js` and update assets referecnce in `scripts.php`.
-
 ### Options
 
 #### rename
@@ -102,5 +107,32 @@ Default: `4`
 
 The number of characters of the file hash to prefix the file name with.
 
+### Using with Roots theme
 
-[MIT License](LICENSE-MIT)
+#### lib/script.php
+
+
+```javascript
+wprev: {
+  assets: {
+    src: ['path/to/style.css',
+          'path/to/scripts.js',],
+    dest: 'path/to/target.php'
+  }
+},
+
+```
+
+
+
+## Release History
+
+ * 2013-09-07   v0.1.3   Rename source target, not destination. Change default characters length of hash file prefix to 4.
+ * 2013-09-05   v0.1.2   Refactored docs
+ * 2013-09-04   v0.1.0   Initial commit.
+
+---
+
+Task submitted by [Hariadi Hinta](http://hariadi.org/)
+
+*This file was generated on Mon Sep 16 2013 00:14:43.*
