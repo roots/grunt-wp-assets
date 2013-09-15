@@ -1,0 +1,13 @@
+v0.1.3:
+  date: 2013-09-07
+  changes:
+    - Rename source target, not destination.
+    - Change default characters length of hash file prefix to 4.
+v0.1.2:
+  date: 2013-09-05
+  changes:
+    - Refactored docs
+v0.1.0:
+ date: 2013-09-04
+ changes:
+   - Initial commit.
