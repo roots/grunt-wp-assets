@@ -53,6 +53,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-readme');
 
   // Register tasks
   grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha']);
