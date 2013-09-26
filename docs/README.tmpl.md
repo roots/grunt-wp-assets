@@ -1,6 +1,7 @@
 # {%= name %} v{%= version %}{% if (travis) { %} [![Build Status]({%= travis %}.png?branch=master)]({%= travis %}){% } %}
 
 > {%= description %}
+
 {%= _.doc("overview.md") %}
 {%= _.doc("getting-started.md") %}
 {%= _.doc("wprev-*.md") %}
@@ -11,7 +12,7 @@
 
 ## Author
 
-+ [github/{%= author.name %}]({%= author.url %})
++ [{%= author.name %}]({%= author.url %})
 
 ## License
 {%= _.include("docs-license.md") %}
