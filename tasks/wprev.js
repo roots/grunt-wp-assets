@@ -60,9 +60,9 @@ module.exports = function(grunt) {
             re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
             wpcontent = wpcontent.replace(re, newName);
 
-      grunt.file.write(dest, wpcontent);
-      var status = (options.rename) ? ' rename' : ' change';
-      grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
+        grunt.file.write(dest, wpcontent);
+        var status = (options.rename) ? ' rename' : ' change';
+        grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
       });
       next();
     }, this.async());

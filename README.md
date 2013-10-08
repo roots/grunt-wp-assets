@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.3 [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
+# grunt-wp-assets v0.1.4 [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -127,4 +127,4 @@ Released under the MIT license
 
 ***
 
-_This file was generated on Thu Sep 26 2013 18:43:22._
+_This file was generated on Tue Oct 08 2013 22:49:04._
