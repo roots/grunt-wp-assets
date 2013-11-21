@@ -1,6 +1,6 @@
 /*
  * grunt-assets-wp
- * https://github.com/hariadi/grunt-assets-wp
+ * https://github.com/roots/grunt-assets-wp
  *
  * Base from:
  * https://github.com/yeoman/grunt-filerev
