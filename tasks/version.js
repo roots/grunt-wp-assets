@@ -20,12 +20,16 @@ module.exports = function(grunt) {
 
     var dest = this.data.dest,
         options = this.options({
-        encoding: 'utf8',
-        algorithm: 'md5',
-        format: true,
-        length: 4,
-        rename: false
-      });
+          styleHandle: '',
+          scriptHandle: '',
+          encoding: 'utf8',
+          algorithm: 'md5',
+          format: true,
+          length: 4,
+          rename: false,
+          querystring: {}
+        }),
+        querystring = (options.querystring.cssHandle && options.querystring.jsHandle) ? true : false;
 
     grunt.util.async.forEach(this.files, function (files, next) {
 
@@ -55,10 +59,32 @@ module.exports = function(grunt) {
         }
 
         // Get target, find and change references assets to new hashed.
-        var wpcontent = grunt.file.read(dest),
-            match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g"),
-            re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
-            wpcontent = wpcontent.replace(re, newName);
+        var wpcontent = grunt.file.read(dest), match, re;
+
+        if (querystring) {
+          /*
+          * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
+           */
+          if (ext === '.css') {
+
+            re = new RegExp("(wp_enqueue_style\\('" + options.querystring.cssHandle + "',(\\s*[^,]+,){2})\\s*[^\\)]+\\);");
+            newName = "$1 '" + suffix + "');";
+
+          } else {
+
+            re = new RegExp("(wp_register_script\\('" + options.querystring.jsHandle + "',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);");
+            newName = "$1 '" + suffix + "', " + "$3);";
+
+          }
+
+        } else {
+
+          match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g");
+          re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
+
+        }
+
+        wpcontent = wpcontent.replace(re, newName);
 
         grunt.file.write(dest, wpcontent);
         var status = (options.rename) ? ' rename' : ' change';
