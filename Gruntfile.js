@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       ]
     },
 
-    wprev: {
+    version: {
       assets: {
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
@@ -56,6 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-readme');
 
   // Register tasks
-  grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha', 'readme']);
+  grunt.registerTask('default', [ 'clean', 'version', 'simplemocha', 'readme']);
 
 };

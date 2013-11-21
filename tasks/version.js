@@ -16,7 +16,7 @@ var fs = require('fs'),
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('wprev', 'WordPress assets revving', function() {
+  grunt.registerMultiTask('version', 'WordPress assets revving', function() {
 
     var dest = this.data.dest,
         options = this.options({
