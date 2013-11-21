@@ -56,6 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-readme');
 
   // Register tasks
-  grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha']);
+  grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha', 'readme']);
 
 };
