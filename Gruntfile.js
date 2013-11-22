@@ -29,6 +29,27 @@ module.exports = function(grunt) {
               'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/index.html'
       },
+      // Legacy Roots filename revving.
+      querystring: {
+        options: {
+          length: 8,
+          querystring: {
+            cssHandle: 'roots_main',
+            jsHandle: 'roots_scripts'
+          }
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/lib/scripts.php'
+      },
+      rootsWithoutQuerystring: {
+        options: {
+          length: 8
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/lib/scripts.php'
+      },
     },
 
     simplemocha: {
