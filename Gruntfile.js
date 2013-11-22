@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
-        dest: 'test/fixtures/lib/scripts.php'
+        dest: 'test/fixtures/lib/scripts2.php'
       },
       rootsWithoutQuerystring: {
         options: {

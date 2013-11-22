@@ -48,14 +48,6 @@ module.exports = function(grunt) {
             ext = path.extname(file),
             newName = options.format ? [suffix, basename(file, ext), ext.slice(1)].join('.') : [basename(file, ext), suffix, ext.slice(1)].join('.');
 
-        // Copy/rename file base on hash and format
-        var resultPath = path.resolve(path.dirname(file), newName);
-        if (options.rename) {
-          fs.renameSync(file, resultPath);
-        } else {
-          grunt.file.copy(file, resultPath);
-        }
-
         // Get target, find and change references assets to new hashed.
         var wpcontent = grunt.file.read(dest), match, re;
 
@@ -63,36 +55,44 @@ module.exports = function(grunt) {
 
           if (ext === '.css') {
 
-            re = new RegExp('(wp_enqueue_style\\(' + options.querystring.cssHandle + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
-            newName = '$1 ' + suffix + ');';
+            re = new RegExp('(wp_enqueue_style\\(' + '\''+ options.querystring.cssHandle +'\'' + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
+            newName = '$1 ' + '\''+ suffix +'\'' + ');';
 
           } else if (ext === '.js') {
 
-            re = new RegExp('(wp_register_script\\(' + options.querystring.jsHandle + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
-            newName = '$1 ' + suffix + ', ' + '$3);';
+            re = new RegExp('(wp_register_script\\(' + '\''+ options.querystring.jsHandle +'\'' + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
+            newName = '$1 ' + '\''+ suffix +'\'' + ', ' + '$3);';
 
           }
-
+          wpcontent = wpcontent.replace(re, newName);
+          grunt.log.writeln('  ' + dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
+          next();
         } else {
+
+          // Copy/rename file base on hash and format
+          var resultPath = path.resolve(path.dirname(file), newName);
+          if (options.rename) {
+            fs.renameSync(file, resultPath);
+          } else {
+            grunt.file.copy(file, resultPath);
+          }
           /*
           * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
           *
            */
           // Make sure $media for css and $ver for js is null
-          // TODO: this should use regex using or to match 'hash' or 'suffix'. Anyone?
-          //    .replace(/hash|suffix/)
           wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
           match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, 'g');
           re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
-
+          wpcontent = wpcontent.replace(re, newName);
+          var status = (options.rename) ? ' rename' : ' change';
+          grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
+          next();
         }
 
-        wpcontent = wpcontent.replace(re, newName);
-
         grunt.file.write(dest, wpcontent);
-        var status = (options.rename) ? ' rename' : ' change';
-        grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
+
       });
       next();
     }, this.async());
