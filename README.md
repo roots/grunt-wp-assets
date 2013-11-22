@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.4 [![Build Status](https://travis-ci.org/hariadi/grunt-wp-assets.png?branch=master)](https://travis-ci.org/hariadi/grunt-wp-assets)
+# grunt-wp-assets v0.1.4 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -124,7 +124,3 @@ The number of characters of the file hash to prefix the file name with.
 Copyright (c) 2013 Hariadi Hinta
 Released under the MIT license
 
-
-***
-
-_This file was generated on Wed Nov 20 2013 22:56:38._

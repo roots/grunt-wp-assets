@@ -1,6 +1,6 @@
 /*
  * grunt-assets-wp
- * https://github.com/hariadi/grunt-assets-wp
+ * https://github.com/roots/grunt-assets-wp
  *
  * Base from:
  * https://github.com/yeoman/grunt-filerev
@@ -16,16 +16,18 @@ var fs = require('fs'),
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('wprev', 'WordPress assets revving', function() {
+  grunt.registerMultiTask('version', 'WordPress assets revving', function() {
 
-    var dest = this.data.dest,
-        options = this.options({
-        encoding: 'utf8',
-        algorithm: 'md5',
-        format: true,
-        length: 4,
-        rename: false
-      });
+    var dest = this.data.dest;
+    var options = this.options({
+      encoding: 'utf8',
+      algorithm: 'md5',
+      format: true,
+      length: 4,
+      rename: false,
+      querystring: {}
+    });
+    var querystring = (options.querystring.cssHandle && options.querystring.jsHandle) ? true : false;
 
     grunt.util.async.forEach(this.files, function (files, next) {
 
@@ -55,10 +57,38 @@ module.exports = function(grunt) {
         }
 
         // Get target, find and change references assets to new hashed.
-        var wpcontent = grunt.file.read(dest),
-            match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g"),
-            re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
-            wpcontent = wpcontent.replace(re, newName);
+        var wpcontent = grunt.file.read(dest), match, re;
+
+        if (querystring) {
+
+          if (ext === '.css') {
+
+            re = new RegExp('(wp_enqueue_style\\(' + options.querystring.cssHandle + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
+            newName = '$1 ' + suffix + ');';
+
+          } else if (ext === '.js') {
+
+            re = new RegExp('(wp_register_script\\(' + options.querystring.jsHandle + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
+            newName = '$1 ' + suffix + ', ' + '$3);';
+
+          }
+
+        } else {
+          /*
+          * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
+          *
+           */
+          // Make sure $media for css and $ver for js is null
+          // TODO: this should use regex using or to match 'hash' or 'suffix'. Anyone?
+          //    .replace(/hash|suffix/)
+          wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
+
+          match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, 'g');
+          re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
+
+        }
+
+        wpcontent = wpcontent.replace(re, newName);
 
         grunt.file.write(dest, wpcontent);
         var status = (options.rename) ? ' rename' : ' change';

@@ -4,7 +4,7 @@
 
 {%= _.doc("overview.md") %}
 {%= _.doc("getting-started.md") %}
-{%= _.doc("wprev-*.md") %}
+{%= _.doc("version-*.md") %}
 
 {% if (changelog) { %}
 ## Release History
@@ -16,7 +16,3 @@
 
 ## License
 {%= _.include("docs-license.md") %}
-
-***
-
-_This file was generated on {%= grunt.template.today() %}._
