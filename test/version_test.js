@@ -10,7 +10,7 @@ var hashed = function(filepath, algorithm, length) {
   var crypto = require('crypto');
 
   algorithm = algorithm || 'md5';
-  length = length || 4;
+  length = length || 8;
 
   var hash = crypto.createHash(algorithm).update(fs.readFileSync(filepath)).digest('hex');
   var suffix = hash.slice(0, length);

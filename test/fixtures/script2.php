@@ -3,7 +3,7 @@
  * Enqueue scripts and stylesheets
  *
  * Enqueue stylesheets in the following order:
- * 1. /theme/assets/css/8644.86448644.main.min.css
+ * 1. /theme/assets/css/8644.86448e13.main.min.css
  *
  * Enqueue scripts in the following order:
  * 1. jquery-1.10.2.min.js via Google CDN
@@ -27,7 +27,7 @@ function roots_scripts() {
   }
 
   wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.7.0.min.js', false, null, false);
-  wp_register_script('roots_scripts', get_template_directory_uri() . '/assets/js/f68df68d.scripts.min.js', false, 'be373268f9b8ecda7c3a45154676e637', true);
+  wp_register_script('roots_scripts', get_template_directory_uri() . '/assets/js/f68de2d4.scripts.min.js', false, 'be373268f9b8ecda7c3a45154676e637', true);
   wp_enqueue_script('modernizr');
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_scripts');

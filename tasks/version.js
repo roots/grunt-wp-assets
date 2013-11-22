@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       encoding: 'utf8',
       algorithm: 'md5',
       format: true,
-      length: 4,
+      length: 8,
       rename: false,
       querystring: {}
     });
