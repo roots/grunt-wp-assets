@@ -4,7 +4,7 @@
 
 
 ```javascript
-wprev: {
+version: {
   assets: {
     src: ['path/to/style.css',
           'path/to/scripts.js',],
@@ -20,7 +20,7 @@ This example task will copy `path/to/style.css` to `assets/css/{md5hash}.style.c
 
 
 ```javascript
-wprev: {
+version: {
   assets: {
   options: {
       algorithm: 'sha1',
