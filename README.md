@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.5 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets v0.1.6 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -29,7 +29,7 @@ grunt.loadNpmTasks('grunt-wp-assets');
 
 
 ```javascript
-wprev: {
+version: {
   assets: {
     src: ['path/to/style.css',
           'path/to/scripts.js',],
@@ -45,7 +45,7 @@ This example task will copy `path/to/style.css` to `assets/css/{md5hash}.style.c
 
 
 ```javascript
-wprev: {
+version: {
   assets: {
   options: {
       algorithm: 'sha1',
