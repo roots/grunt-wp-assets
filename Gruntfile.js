@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       ]
     },
 
-    wprev: {
+    version: {
       assets: {
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
@@ -28,6 +28,27 @@ module.exports = function(grunt) {
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/index.html'
+      },
+      // Legacy Roots filename revving.
+      querystring: {
+        options: {
+          length: 8,
+          querystring: {
+            cssHandle: 'roots_main',
+            jsHandle: 'roots_scripts'
+          }
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/lib/scripts.php'
+      },
+      rootsWithoutQuerystring: {
+        options: {
+          length: 8
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+              'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/lib/scripts.php'
       },
     },
 
@@ -56,6 +77,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-readme');
 
   // Register tasks
-  grunt.registerTask('default', [ 'clean', 'wprev', 'simplemocha', 'readme']);
+  grunt.registerTask('default', [ 'clean', 'version', 'simplemocha', 'readme']);
 
 };
