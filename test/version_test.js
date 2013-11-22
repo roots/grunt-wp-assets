@@ -40,9 +40,9 @@ describe('version task', function () {
 
   });
 
-  describe("when querystring enable", function() {
+  describe("when using Roots querystring disable", function() {
     if (path.extname(css) === '.css') {
-      it('length: 8, querystring.cssHandle: roots_main, jsHandle: roots_scripts', function () {
+      it('accept option: length: 8', function () {
 
           var original = fs.statSync(css).size;
           var revisioned= fs.statSync('test/fixtures/assets/css/c9f21557.main.min.css').size;

@@ -18,18 +18,16 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('version', 'WordPress assets revving', function() {
 
-    var dest = this.data.dest,
-        options = this.options({
-          styleHandle: '',
-          scriptHandle: '',
-          encoding: 'utf8',
-          algorithm: 'md5',
-          format: true,
-          length: 4,
-          rename: false,
-          querystring: {}
-        }),
-        querystring = (options.querystring.cssHandle && options.querystring.jsHandle) ? true : false;
+    var dest = this.data.dest;
+    var options = this.options({
+      encoding: 'utf8',
+      algorithm: 'md5',
+      format: true,
+      length: 4,
+      rename: false,
+      querystring: {}
+    });
+    var querystring = (options.querystring.cssHandle && options.querystring.jsHandle) ? true : false;
 
     grunt.util.async.forEach(this.files, function (files, next) {
 
@@ -62,25 +60,31 @@ module.exports = function(grunt) {
         var wpcontent = grunt.file.read(dest), match, re;
 
         if (querystring) {
-          /*
-          * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
-           */
+
           if (ext === '.css') {
 
-            re = new RegExp("(wp_enqueue_style\\('" + options.querystring.cssHandle + "',(\\s*[^,]+,){2})\\s*[^\\)]+\\);");
-            newName = "$1 '" + suffix + "');";
+            re = new RegExp('(wp_enqueue_style\\(' + options.querystring.cssHandle + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
+            newName = '$1 ' + suffix + ');';
 
-          } else {
+          } else if (ext === '.js') {
 
-            re = new RegExp("(wp_register_script\\('" + options.querystring.jsHandle + "',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);");
-            newName = "$1 '" + suffix + "', " + "$3);";
+            re = new RegExp('(wp_register_script\\(' + options.querystring.jsHandle + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
+            newName = '$1 ' + suffix + ', ' + '$3);';
 
           }
 
         } else {
+          /*
+          * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
+          *
+           */
+          // Make sure $media for css and $ver for js is null
+          // TODO: this should use regex using or to match 'hash' or 'suffix'. Anyone?
+          //    .replace(/hash|suffix/)
+          wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
-          match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, "g");
-          re = ( match.test(wpcontent) ) ? match : new RegExp(name, "g");
+          match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, 'g');
+          re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
 
         }
 
