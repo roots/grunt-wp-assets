@@ -1,7 +1,11 @@
+v0.1.7:
+  date: 2013-11-24
+  changes:
+    - Change querystring options name to `style` and `script`.
+    - Update docs.
 v0.1.6:
   date: 2013-11-23
   changes:
-    - Update docs.
     - Change default filename revving and length.
 v0.1.5:
   date: 2013-11-22
