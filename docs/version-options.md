@@ -39,3 +39,17 @@ Default: `4`
 
 The number of characters of the file hash to prefix the file name with.
 
+## querystring.style
+
+Type: `String`  
+Default: `undefined`
+
+Name used as a handle for the stylesheet.
+
+## querystring.script
+
+Type: `String`  
+Default: `undefined`
+
+Name used as a handle for the script.
+

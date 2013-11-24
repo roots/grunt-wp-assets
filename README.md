@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.6 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets v0.1.7 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -105,12 +105,28 @@ Default: `4`
 
 The number of characters of the file hash to prefix the file name with.
 
+### querystring.style
+
+Type: `String`  
+Default: `undefined`
+
+Name used as a handle for the stylesheet.
+
+### querystring.script
+
+Type: `String`  
+Default: `undefined`
+
+Name used as a handle for the script.
+
 
 
 
 
 ## Release History
 
+ * 2013-11-23   v0.1.6   Update docs. Change default filename revving and length.
+ * 2013-11-22   v0.1.5   Update test. Move to roots org. Rename task from "wprev" tp "version".
  * 2013-09-07   v0.1.3   Rename source target, not destination. Change default characters length of hash file prefix to 4.
  * 2013-09-05   v0.1.2   Refactored docs
  * 2013-09-04   v0.1.0   Initial commit.
