@@ -34,8 +34,8 @@ module.exports = function(grunt) {
         options: {
           length: 8,
           querystring: {
-            cssHandle: 'roots_main',
-            jsHandle: 'roots_scripts'
+            style: 'roots_main',
+            script: 'roots_scripts'
           }
         },
         src: ['test/fixtures/assets/css/main.min.css',

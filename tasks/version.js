@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       rename: false,
       querystring: {}
     });
-    var querystring = (options.querystring.cssHandle && options.querystring.jsHandle) ? true : false;
+    var querystring = (options.querystring.style && options.querystring.script) ? true : false;
 
     grunt.util.async.forEach(this.files, function (files, next) {
 
@@ -55,15 +55,16 @@ module.exports = function(grunt) {
 
           if (ext === '.css') {
 
-            re = new RegExp('(wp_enqueue_style\\(' + '\''+ options.querystring.cssHandle +'\'' + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
+            re = new RegExp('(wp_enqueue_style\\(' + '\''+ options.querystring.style +'\'' + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
             newName = '$1 ' + '\''+ suffix +'\'' + ');';
 
           } else if (ext === '.js') {
 
-            re = new RegExp('(wp_register_script\\(' + '\''+ options.querystring.jsHandle +'\'' + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
+            re = new RegExp('(wp_register_script\\(' + '\''+ options.querystring.script +'\'' + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
             newName = '$1 ' + '\''+ suffix +'\'' + ', ' + '$3);';
 
           }
+
           wpcontent = wpcontent.replace(re, newName);
           grunt.log.writeln('  ' + dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
           next();
@@ -76,11 +77,9 @@ module.exports = function(grunt) {
           } else {
             grunt.file.copy(file, resultPath);
           }
-          /*
-          * Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
-          *
-           */
+
           // Make sure $media for css and $ver for js is null
+          // Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
           wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
           match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, 'g');
