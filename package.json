@@ -28,12 +28,12 @@
     "node": ">=0.8.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.2",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-readme": "~0.3.0"
+    "grunt-readme": "~0.3.4"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
