@@ -12,7 +12,8 @@
 
 var fs = require('fs'),
     path = require('path'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    async = require('async');
 
 module.exports = function(grunt) {
 
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
     });
     var querystring = (options.querystring.style && options.querystring.script) ? true : false;
 
-    grunt.util.async.forEach(this.files, function (files, next) {
+    async.forEach(this.files, function (files, next) {
 
       files.src.filter(function(file) {
         if (!grunt.file.exists(file)) {
@@ -67,7 +68,6 @@ module.exports = function(grunt) {
 
           wpcontent = wpcontent.replace(re, newName);
           grunt.log.writeln('  ' + dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
-          next();
         } else {
 
           // Copy/rename file base on hash and format
@@ -87,7 +87,6 @@ module.exports = function(grunt) {
           wpcontent = wpcontent.replace(re, newName);
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
-          next();
         }
 
         grunt.file.write(dest, wpcontent);

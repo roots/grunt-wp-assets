@@ -124,13 +124,6 @@ Name used as a handle for the script.
 
 
 ## Release History
-
- * 2013-11-24   v0.1.7   Change querystring options name to `style` and `script`. Update docs.
- * 2013-11-23   v0.1.6   Change default filename revving and length.
- * 2013-11-22   v0.1.5   Update test. Move to roots org. Rename task from "wprev" tp "version".
- * 2013-09-07   v0.1.3   Rename source target, not destination. Change default characters length of hash file prefix to 4.
- * 2013-09-05   v0.1.2   Refactored docs
- * 2013-09-04   v0.1.0   Initial commit.
  
 
 ## Author
@@ -138,6 +131,4 @@ Name used as a handle for the script.
 + [Hariadi Hinta](https://github.com/hariadi)
 
 ## License
-Copyright (c) 2013 Hariadi Hinta
-Released under the MIT license
 
