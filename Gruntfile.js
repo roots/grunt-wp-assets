@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         dest: 'test/fixtures/lib/scripts.php'
       },
 
-      withoutFormat2times1st: {
+      withoutFormat2times: {
         options: {
           format: false,
           length: 8,
