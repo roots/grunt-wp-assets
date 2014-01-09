@@ -17,7 +17,7 @@ module.exports = function (grunt) {
     version: {
       assets: {
         src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
+              'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/script2.php'
       },
       withConfig: {
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
           length: 8
         },
         src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
+              'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/index.html'
       },
       // Legacy Roots filename revving.
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
           }
         },
         src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
+              'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/lib/scripts2.php'
       },
       rootsWithoutQuerystring: {
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
           length: 8
         },
         src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
+              'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/lib/scripts.php'
       },
 
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
           algorithm: 'sha1'
         },
         src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
+              'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/lib/scripts3.php'
 
       }
@@ -74,8 +74,8 @@ module.exports = function (grunt) {
     },
 
     clean: {
-      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.{css,js}', ]
-    },
+      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.{css,js}']
+    }
 
 
   });
