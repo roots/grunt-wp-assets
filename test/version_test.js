@@ -6,17 +6,21 @@ var assert = require('assert');
 var css = "test/fixtures/assets/css/main.min.css";
 var js = "test/fixtures/assets/js/scripts.min.js";
 
-var hashed = function(filepath, algorithm, length) {
+var hashed = function(filepath, algorithm, length,format) {
   var crypto = require('crypto');
 
   algorithm = algorithm || 'md5';
   length = length || 8;
+	format = typeof format === 'undefined' ? true : !!format;
 
   var hash = crypto.createHash(algorithm).update(fs.readFileSync(filepath)).digest('hex');
   var suffix = hash.slice(0, length);
   var ext = path.extname(filepath)
-  return [suffix, path.basename(filepath, ext), ext.slice(1)].join('.');
+  return format ?
+	  [suffix, path.basename(filepath, ext), ext.slice(1)].join('.') :
+	  [path.basename(filepath, ext), suffix, ext.slice(1)].join('.');
 };
+
 console.log(hashed(css));
 
 describe('version task', function () {
@@ -64,5 +68,26 @@ describe('version task', function () {
       });
     }
   });
+
+	describe("replacement from file.{hash}.ext", function() {
+		if (path.extname(css) === '.css') {
+			it('has no scripts.min.01010101.js or main.min.01010101.css', function () {
+
+				var modified = fs.readFileSync('test/fixtures/lib/scripts3.php', {encoding: 'utf8'});
+
+				var oldjs = (new RegExp('scripts.min.01010101.js','g')).test(modified);
+				var oldcss = (new RegExp('main.min.01010101.css','g')).test(modified);
+				var newjs = (new RegExp(hashed(js, 'sha1', 8,false),'g')).test(modified);
+				var newcss = (new RegExp(hashed(css, 'sha1', 8,false),'g')).test(modified);
+
+
+				assert(oldjs === false);
+				assert(oldcss === false);
+				assert(newjs === true);
+				assert(newcss === true);
+
+			});
+		}
+	});
 
 });
