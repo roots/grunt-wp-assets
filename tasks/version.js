@@ -11,11 +11,11 @@
 'use strict';
 
 var fs = require('fs'),
-  path = require('path'),
-  crypto = require('crypto'),
-  async = require('async');
+    path = require('path'),
+    crypto = require('crypto'),
+    async = require('async');
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   grunt.registerMultiTask('version', 'WordPress assets revving', function () {
 
@@ -30,16 +30,16 @@ module.exports = function (grunt) {
     });
     var querystring = (options.querystring.style && options.querystring.script) ? true : false;
 
-    async.forEach(this.files, function (files, next) {
+    async.forEach(this.files, function(files, next) {
 
-      files.src.filter(function (file) {
+      files.src.filter(function(file) {
         if (!grunt.file.exists(file)) {
           grunt.log.warn('Source file "' + file + '" not found.');
           return false;
         } else {
           return true;
         }
-      }).forEach(function (file) {
+      }).forEach(function(file) {
 
           var basename = path.basename,
             name = basename(file),
