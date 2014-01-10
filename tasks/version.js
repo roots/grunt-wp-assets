@@ -47,6 +47,7 @@ module.exports = function(grunt) {
             hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex'),
             suffix = hash.slice(0, options.length),
             ext = path.extname(file),
+            namepart = path.basename(name, ext),
             newName = options.format ? [suffix, basename(file, ext), ext.slice(1)].join('.') : [basename(file, ext), suffix, ext.slice(1)].join('.');
 
         // Get target, find and change references assets to new hashed.
@@ -82,7 +83,11 @@ module.exports = function(grunt) {
           // Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
           wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
-          match = new RegExp('[a-z0-9]{'+ options.length +'}.' + name, 'g');
+          // Issue #9 consider options format for RegExp
+          match = options.format ?
+            new RegExp('[a-z0-9]{' + options.length + '}.' + name, 'g') :
+            new RegExp(namepart + '.[a-z0-9]{' + options.length + '}' + ext, 'g');
+
           re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
           wpcontent = wpcontent.replace(re, newName);
           var status = (options.rename) ? ' rename' : ' change';

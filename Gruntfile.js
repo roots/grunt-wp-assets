@@ -50,6 +50,18 @@ module.exports = function(grunt) {
               'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/lib/scripts.php'
       },
+
+      withoutFormat2times: {
+        options: {
+          format: false,
+          length: 8,
+          algorithm: 'sha1'
+        },
+        src: ['test/fixtures/assets/css/main.min.css',
+          'test/fixtures/assets/js/scripts.min.js'],
+        dest: 'test/fixtures/lib/scripts3.php'
+
+      }
     },
 
     simplemocha: {
