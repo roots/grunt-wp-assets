@@ -65,4 +65,25 @@ describe('version task', function () {
     }
   });
 
+  describe("replacement from file.{hash}.ext", function () {
+    if (path.extname(css) === '.css') {
+      it('has no scripts.min.01010101.js or main.min.01010101.css', function () {
+
+        var modified = fs.readFileSync('test/fixtures/lib/scripts3.php', {encoding: 'utf8'});
+
+        var oldjs = (new RegExp('scripts.min.01010101.js', 'g')).test(modified);
+        var oldcss = (new RegExp('main.min.01010101.css', 'g')).test(modified);
+        var newjs = (new RegExp(hashed(js, 'sha1', 8, false), 'g')).test(modified);
+        var newcss = (new RegExp(hashed(css, 'sha1', 8, false), 'g')).test(modified);
+
+
+        assert(oldjs === false);
+        assert(oldcss === false);
+        assert(newjs === true);
+        assert(newcss === true);
+
+      });
+    }
+  });
+
 });
