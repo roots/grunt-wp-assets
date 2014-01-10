@@ -72,7 +72,7 @@ describe('version task', function () {
     if (path.extname(css) === '.css') {
       it('has no scripts.min.01010101.js or main.min.01010101.css', function () {
 
-        var modified = fs.readFileSync('test/fixtures/lib/scripts3.php', {encoding: 'utf8'});
+        var modified = fs.readFileSync('test/fixtures/lib/scripts3.php', 'utf8');
 
         var oldjs = (new RegExp('scripts.min.01010101.js', 'g')).test(modified);
         var oldcss = (new RegExp('main.min.01010101.css', 'g')).test(modified);
