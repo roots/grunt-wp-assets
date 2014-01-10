@@ -6,16 +6,19 @@ var assert = require('assert');
 var css = "test/fixtures/assets/css/main.min.css";
 var js = "test/fixtures/assets/js/scripts.min.js";
 
-var hashed = function(filepath, algorithm, length) {
+var hashed = function(filepath, algorithm, length, format) {
   var crypto = require('crypto');
 
   algorithm = algorithm || 'md5';
   length = length || 8;
+  format = typeof format === 'undefined' ? true : !!format;
 
   var hash = crypto.createHash(algorithm).update(fs.readFileSync(filepath)).digest('hex');
   var suffix = hash.slice(0, length);
   var ext = path.extname(filepath)
-  return [suffix, path.basename(filepath, ext), ext.slice(1)].join('.');
+  return format ?
+    [suffix, path.basename(filepath, ext), ext.slice(1)].join('.'):
+    [path.basename(filepath, ext), suffix, ext.slice(1)].join('.');
 };
 console.log(hashed(css));
 
