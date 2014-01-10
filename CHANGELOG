@@ -1,3 +1,7 @@
+v0.1.8:
+  date: 2014-01-10
+  changes:
+    - Fix replacement of previous hashed filenames does not work when format is set to false.
 v0.1.7:
   date: 2013-11-24
   changes:
