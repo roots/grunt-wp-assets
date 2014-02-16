@@ -27,13 +27,15 @@
   "engines": {
     "node": ">=0.8.0"
   },
+  "dependencies": {
+    "async": "~0.2.10"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-simple-mocha": "~0.4.0",
     "grunt-contrib-jshint": "~0.8.0",
-    "grunt-readme": "~0.4.5",
-    "async": "~0.2.9"
+    "grunt-readme": "~0.4.5"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
