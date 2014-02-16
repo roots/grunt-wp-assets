@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.8 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets v0.1.9 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -124,6 +124,7 @@ Name used as a handle for the script.
 
 ## Release History
 
+ * 2014-02-16   v0.1.9   Move extenal lib use by grunt to deps insteadof devdeps.
  * 2014-01-10   v0.1.8   Fix replacement of previous hashed filenames does not work when format is set to false.
  * 2013-11-24   v0.1.7   Change querystring options name to `style` and `script`. Update docs.
  * 2013-11-23   v0.1.6   Change default filename revving and length.

@@ -1,3 +1,7 @@
+v0.1.9:
+  date: 2014-02-16
+  changes:
+    - Move extenal lib use by grunt to deps insteadof devdeps.
 v0.1.8:
   date: 2014-01-10
   changes:
