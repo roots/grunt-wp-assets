@@ -22,6 +22,7 @@ module.exports = function(grunt) {
       },
       withConfig: {
         options: {
+          format: true,
           algorithm: 'sha1',
           length: 8
         },
@@ -32,6 +33,7 @@ module.exports = function(grunt) {
       // Legacy Roots filename revving.
       querystring: {
         options: {
+          format: true,
           length: 8,
           querystring: {
             style: 'roots_main',
@@ -44,6 +46,7 @@ module.exports = function(grunt) {
       },
       rootsWithoutQuerystring: {
         options: {
+          format: true,
           length: 8
         },
         src: ['test/fixtures/assets/css/main.min.css',
@@ -53,7 +56,6 @@ module.exports = function(grunt) {
 
       withoutFormat2times: {
         options: {
-          format: false,
           length: 8,
           algorithm: 'sha1'
         },
@@ -74,7 +76,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      tests: ['test/fixtures/assets/{css,js}/*.{main,scripts}.min.{css,js}',]
+      tests: ['test/fixtures/assets/{css,js}/*.{css,js}', '!test/fixtures/assets/{css,js}/{main,scripts}.min.{css,js}']
     },
 
 
