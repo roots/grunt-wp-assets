@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.1.9 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets v0.2.0 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
