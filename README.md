@@ -76,12 +76,37 @@ It will rename the `src` target instead of copy.
 ### format
 
 Type: `Boolean`  
-Default: `true`
+Default: `false`
 
 File name format.
 ```
-true: {hash}.{filename}.{ext}
-false: {filename}.{hash}.{ext}
+false: {hash}.{filename}.{ext}
+true: {filename}.{hash}.{ext}
+```
+
+### minify
+
+Type: `Boolean`   
+Default: `true`
+
+Minify version.
+
+### minify
+
+Type: `Boolean`  
+Default: `true`
+
+It is minify version?
+
+### minifyname
+
+Type: `String`  
+Default: `min`
+
+```
+// set minifyname: minify if you have filename like this
+main.minify.css
+scripts.minify.js
 ```
 
 ### encoding
@@ -124,6 +149,7 @@ Name used as a handle for the script.
 
 ## Release History
 
+ * 2014-02-17   v0.2.0   Add options for `minify` and `minifyname`. Change default option for format to `false`. Update simple test assets.
  * 2014-02-16   v0.1.9   Move extenal lib use by grunt to deps insteadof devdeps.
  * 2014-01-10   v0.1.8   Fix replacement of previous hashed filenames does not work when format is set to false.
  * 2013-11-24   v0.1.7   Change querystring options name to `style` and `script`. Update docs.

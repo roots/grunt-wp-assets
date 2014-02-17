@@ -23,11 +23,17 @@ module.exports = function(grunt) {
     var options = this.options({
       encoding: 'utf8',
       algorithm: 'md5',
-      format: true,
+      format: false,
+      minify: true,
+      minifyname: 'min',
       length: 8,
       rename: false,
       querystring: {}
     });
+
+    options.minifyname = '.' + options.minifyname;
+    console.log(options.minifyname);
+
     var querystring = (options.querystring.style && options.querystring.script) ? true : false;
 
     async.forEach(this.files, function (files, next) {
@@ -42,13 +48,18 @@ module.exports = function(grunt) {
       }).forEach(function(file) {
 
         var basename = path.basename,
-            name = basename(file),
+            isMinify = (options.minify || options.minifyname.indexOf(basename(file)) !== -1) ? true : false,
+            name = basename(file).replace(options.minifyname, ''),
             content = grunt.file.read(file),
             hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex'),
             suffix = hash.slice(0, options.length),
             ext = path.extname(file),
             namepart = path.basename(name, ext),
-            newName = options.format ? [suffix, basename(file, ext), ext.slice(1)].join('.') : [basename(file, ext), suffix, ext.slice(1)].join('.');
+            newName = options.format ?
+              [suffix, basename(file, ext), ext.slice(1)].join('.') :
+              (isMinify) ?
+              [basename(name, ext), suffix + options.minifyname, ext.slice(1)].join('.') :
+              [basename(file, ext), suffix, ext.slice(1)].join('.');
 
         // Get target, find and change references assets to new hashed.
         var wpcontent = grunt.file.read(dest), match, re;
@@ -84,16 +95,16 @@ module.exports = function(grunt) {
           wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
           // Issue #9 consider options format for RegExp
+          ext = isMinify ? options.minifyname + ext : ext;
           match = options.format ?
             new RegExp('[a-z0-9]{' + options.length + '}.' + name, 'g') :
-            new RegExp(namepart + '.[a-z0-9]{' + options.length + '}' + ext, 'g');
+            new RegExp(namepart + '.[a-z0-9]{' + options.length + '}' +  ext, 'g');
 
           re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
           wpcontent = wpcontent.replace(re, newName);
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
         }
-
         grunt.file.write(dest, wpcontent);
 
       });
