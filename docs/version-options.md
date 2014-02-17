@@ -10,12 +10,37 @@ It will rename the `src` target instead of copy.
 ## format
 
 Type: `Boolean`  
-Default: `true`
+Default: `false`
 
 File name format.
 ```
-true: {hash}.{filename}.{ext}
-false: {filename}.{hash}.{ext}
+false: {hash}.{filename}.{ext}
+true: {filename}.{hash}.{ext}
+```
+
+## minify
+
+Type: `Boolean`   
+Default: `true`
+
+Minify version.
+
+## minify
+
+Type: `Boolean`  
+Default: `true`
+
+It is minify version?
+
+## minifyname
+
+Type: `String`  
+Default: `min`
+
+```
+// set minifyname: minify if you have filename like this
+main.minify.css
+scripts.minify.js
 ```
 
 ## encoding
