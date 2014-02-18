@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.2.0 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets v0.2.1 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -86,13 +86,6 @@ true: {filename}.{hash}.{ext}
 
 ### minify
 
-Type: `Boolean`   
-Default: `true`
-
-Minify version.
-
-### minify
-
 Type: `Boolean`  
 Default: `true`
 
@@ -149,6 +142,7 @@ Name used as a handle for the script.
 
 ## Release History
 
+ * 2014-02-18   v0.2.1   Fix version task not change for the first time.
  * 2014-02-17   v0.2.0   Add options for `minify` and `minifyname`. Change default option for format to `false`. Update simple test assets.
  * 2014-02-16   v0.1.9   Move extenal lib use by grunt to deps insteadof devdeps.
  * 2014-01-10   v0.1.8   Fix replacement of previous hashed filenames does not work when format is set to false.
