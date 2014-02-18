@@ -32,7 +32,6 @@ module.exports = function(grunt) {
     });
 
     options.minifyname = '.' + options.minifyname;
-    console.log(options.minifyname);
 
     var querystring = (options.querystring.style && options.querystring.script) ? true : false;
 
@@ -48,8 +47,9 @@ module.exports = function(grunt) {
       }).forEach(function(file) {
 
         var basename = path.basename,
-            isMinify = (options.minify || options.minifyname.indexOf(basename(file)) !== -1) ? true : false,
-            name = basename(file).replace(options.minifyname, ''),
+            original = basename(file),
+            isMinify = (options.minify || options.minifyname.indexOf(original) !== -1) ? true : false,
+            name = original.replace(options.minifyname, ''),
             content = grunt.file.read(file),
             hash = crypto.createHash(options.algorithm).update(content, options.encoding).digest('hex'),
             suffix = hash.slice(0, options.length),
@@ -94,13 +94,12 @@ module.exports = function(grunt) {
           // Ref: wp_enqueue_style( $handle, $src, $deps, $ver, $media )
           wpcontent = wpcontent.replace('\''+ hash +'\'', 'null').replace('\''+ suffix +'\'', 'null');
 
-          // Issue #9 consider options format for RegExp
           ext = isMinify ? options.minifyname + ext : ext;
           match = options.format ?
-            new RegExp('[a-z0-9]{' + options.length + '}.' + name, 'g') :
+            new RegExp('[a-z0-9]{' + options.length + '}.' + original, 'g') :
             new RegExp(namepart + '.[a-z0-9]{' + options.length + '}' +  ext, 'g');
 
-          re = ( match.test(wpcontent) ) ? match : new RegExp(name, 'g');
+          re = ( match.test(wpcontent) ) ? match : new RegExp(original, 'g');
           wpcontent = wpcontent.replace(re, newName);
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
