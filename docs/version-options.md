@@ -20,13 +20,6 @@ true: {filename}.{hash}.{ext}
 
 ## minify
 
-Type: `Boolean`   
-Default: `true`
-
-Minify version.
-
-## minify
-
 Type: `Boolean`  
 Default: `true`
 
