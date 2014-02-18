@@ -1,3 +1,7 @@
+v0.2.1:
+  date: 2014-02-18
+  changes:
+    - Fix version task not change for the first time.
 v0.2.0:
   date: 2014-02-17
   changes:
