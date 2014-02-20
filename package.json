@@ -1,7 +1,7 @@
 {
   "name": "grunt-wp-assets",
   "description": "WordPress assets revisioning.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/roots/grunt-wp-assets",
   "author": {
     "name": "Hariadi Hinta",
@@ -44,7 +44,7 @@
     "gruntplugin",
     "wordpress",
     "wp-assets",
-    "wp-rev",
+    "version",
     "rev"
   ]
 }
