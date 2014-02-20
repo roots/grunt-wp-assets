@@ -1,4 +1,4 @@
-# grunt-wp-assets v0.2.1 [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
+# grunt-wp-assets  [![Build Status](https://travis-ci.org/roots/grunt-wp-assets.png?branch=master)](https://travis-ci.org/roots/grunt-wp-assets)
 
 > WordPress assets revisioning.
 
@@ -31,9 +31,9 @@ grunt.loadNpmTasks('grunt-wp-assets');
 ```javascript
 version: {
   assets: {
-    src: ['path/to/style.css',
-          'path/to/scripts.js',],
-    dest: 'path/to/target.php'
+    files: {
+      'path/to/target.php': ['path/to/style.css', 'path/to/scripts.js']
+    }
   }
 },
 
@@ -53,9 +53,9 @@ version: {
       format: false,
       rename: true
   },
-    src: ['assets/css/main.min.css',
-          'assets/js/scripts.min.js',],
-    dest: 'scripts.php'
+    files: {
+      'scripts.php': ['assets/css/main.min.css', 'assets/js/scripts.min.js']
+    }
   }
 },
 
@@ -142,6 +142,7 @@ Name used as a handle for the script.
 
 ## Release History
 
+ * 2014-02-21   v0.2.2   Support files array format src/dest
  * 2014-02-18   v0.2.1   Fix version task not change for the first time.
  * 2014-02-17   v0.2.0   Add options for `minify` and `minifyname`. Change default option for format to `false`. Update simple test assets.
  * 2014-02-16   v0.1.9   Move extenal lib use by grunt to deps insteadof devdeps.
