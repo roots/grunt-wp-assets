@@ -16,9 +16,10 @@ module.exports = function(grunt) {
 
     version: {
       assets: {
-        src: ['test/fixtures/assets/css/main.min.css',
-              'test/fixtures/assets/js/scripts.min.js'],
-        dest: 'test/fixtures/script2.php'
+        // Files Array Format
+        files: {
+          'test/fixtures/script2.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
+        }
       },
       withConfig: {
         options: {
@@ -26,6 +27,7 @@ module.exports = function(grunt) {
           algorithm: 'sha1',
           length: 8
         },
+        // Compact Format
         src: ['test/fixtures/assets/css/main.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/index.html'
@@ -40,18 +42,18 @@ module.exports = function(grunt) {
             script: 'roots_scripts'
           }
         },
-        src: ['test/fixtures/assets/css/main.min.css',
-              'test/fixtures/assets/js/scripts.min.js'],
-        dest: 'test/fixtures/lib/scripts2.php'
+        files: {
+          'test/fixtures/lib/scripts2.php': 'test/fixtures/assets/{css,js}/{main,scripts}.min.{css,js}'
+        }
       },
       rootsWithoutQuerystring: {
         options: {
           format: true,
           length: 8
         },
-        src: ['test/fixtures/assets/css/main.min.css',
-              'test/fixtures/assets/js/scripts.min.js'],
-        dest: 'test/fixtures/lib/scripts.php'
+        files: {
+          'test/fixtures/lib/scripts.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
+        }
       },
 
       withoutFormat2times: {
@@ -59,10 +61,9 @@ module.exports = function(grunt) {
           length: 8,
           algorithm: 'sha1'
         },
-        src: ['test/fixtures/assets/css/main.min.css',
-          'test/fixtures/assets/js/scripts.min.js'],
-        dest: 'test/fixtures/lib/scripts3.php'
-
+        files: {
+          'test/fixtures/lib/scripts3.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
+        }
       }
     },
 

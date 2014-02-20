@@ -19,7 +19,6 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('version', 'WordPress assets revving', function() {
 
-    var dest = this.data.dest;
     var options = this.options({
       encoding: 'utf8',
       algorithm: 'md5',
@@ -44,7 +43,7 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).forEach(function(file) {
+      }).map(function(file) {
 
         var basename = path.basename,
             original = basename(file),
@@ -62,7 +61,7 @@ module.exports = function(grunt) {
               [basename(file, ext), suffix, ext.slice(1)].join('.');
 
         // Get target, find and change references assets to new hashed.
-        var wpcontent = grunt.file.read(dest), match, re;
+        var wpcontent = grunt.file.read(files.dest), match, re;
 
         if (querystring) {
 
@@ -79,7 +78,7 @@ module.exports = function(grunt) {
           }
 
           wpcontent = wpcontent.replace(re, newName);
-          grunt.log.writeln('  ' + dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
+          grunt.log.writeln('  ' + files.dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
         } else {
 
           // Copy/rename file base on hash and format
@@ -104,7 +103,7 @@ module.exports = function(grunt) {
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
         }
-        grunt.file.write(dest, wpcontent);
+        grunt.file.write(files.dest, wpcontent);
 
       });
       next();
