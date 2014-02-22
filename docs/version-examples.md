@@ -6,9 +6,9 @@
 ```javascript
 version: {
   assets: {
-    src: ['path/to/style.css',
-          'path/to/scripts.js',],
-    dest: 'path/to/target.php'
+    files: {
+      'path/to/target.php': ['path/to/style.css', 'path/to/scripts.js']
+    }
   }
 },
 
@@ -28,9 +28,9 @@ version: {
       format: false,
       rename: true
   },
-    src: ['assets/css/main.min.css',
-          'assets/js/scripts.min.js',],
-    dest: 'scripts.php'
+    files: {
+      'scripts.php': ['assets/css/main.min.css', 'assets/js/scripts.min.js']
+    }
   }
 },
 
