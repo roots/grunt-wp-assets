@@ -1,0 +1,15 @@
+{
+  "assets": {
+    "main.min.css": {
+      "path": "test/fixtures/assets/css/main.min.css",
+      "hash": "51ea71910a6813fdd9ad5aeb250b2857",
+      "handle": "roots_main"
+    },
+    "scripts.min.js": {
+      "path": "test/fixtures/assets/js/scripts.min.js",
+      "hash": "71a67acb0cf0c504f45412f383d5a231",
+      "handle": "roots_scripts"
+    }
+  },
+  "dest": "test/fixtures/assets/manifest.json"
+}

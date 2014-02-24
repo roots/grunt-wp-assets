@@ -25,7 +25,8 @@ module.exports = function(grunt) {
         options: {
           format: true,
           algorithm: 'sha1',
-          length: 8
+          length: 8,
+          manifest: 'test/fixtures/assets/manifest_withConfig.json',
         },
         // Compact Format
         src: ['test/fixtures/assets/css/main.min.css',
@@ -36,7 +37,8 @@ module.exports = function(grunt) {
       querystring: {
         options: {
           format: true,
-          length: 8,
+          length: 32,
+          manifest: 'test/fixtures/assets/manifest.json',
           querystring: {
             style: 'roots_main',
             script: 'roots_scripts'
@@ -77,7 +79,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      tests: ['test/fixtures/assets/{css,js}/*.{css,js}', '!test/fixtures/assets/{css,js}/{main,scripts}.min.{css,js}']
+      tests: ['test/fixtures/assets/{css,js}/*.{css,js}', 'test/fixtures/assets/*.json', '!test/fixtures/assets/{css,js}/{main,scripts}.min.{css,js}']
     },
 
 

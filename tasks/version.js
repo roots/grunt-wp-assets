@@ -27,8 +27,10 @@ module.exports = function(grunt) {
       minifyname: 'min',
       length: 8,
       rename: false,
-      querystring: {}
+      querystring: {},
+      manifest: false
     });
+    var manifest = grunt.manifest || {assets: {}}, summary;
 
     options.minifyname = '.' + options.minifyname;
 
@@ -60,6 +62,11 @@ module.exports = function(grunt) {
               [basename(name, ext), suffix + options.minifyname, ext.slice(1)].join('.') :
               [basename(file, ext), suffix, ext.slice(1)].join('.');
 
+        if (options.manifest) {
+          summary = { path: file, hash: suffix };
+          manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
+        }
+
         // Get target, find and change references assets to new hashed.
         var wpcontent = grunt.file.read(files.dest), match, re;
 
@@ -69,16 +76,22 @@ module.exports = function(grunt) {
 
             re = new RegExp('(wp_enqueue_style\\(' + '\''+ options.querystring.style +'\'' + ',(\\s*[^,]+,){2})\\s*[^\\)]+\\);');
             newName = '$1 ' + '\''+ suffix +'\'' + ');';
+            summary.handle = options.querystring.style;
 
           } else if (ext === '.js') {
 
             re = new RegExp('(wp_register_script\\(' + '\''+ options.querystring.script +'\'' + ',(\\s*[^,]+,){2})\\s*[^,]+,\\s*([^\\)]+)\\);');
             newName = '$1 ' + '\''+ suffix +'\'' + ', ' + '$3);';
+            summary.handle = options.querystring.script;
 
           }
 
-          wpcontent = wpcontent.replace(re, newName);
-          grunt.log.writeln('  ' + files.dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
+          // Only rename the source if manifest disable
+          if (!options.manifest) {
+            wpcontent = wpcontent.replace(re, newName);
+            grunt.log.writeln('  ' + files.dest.grey + ' update to ' + name.green + ' ('+ suffix.grey +')');
+          }
+
         } else {
 
           // Copy/rename file base on hash and format
@@ -103,10 +116,20 @@ module.exports = function(grunt) {
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
         }
+
+        manifest.assets[grunt.util.normalizelf(original)] = summary;
         grunt.file.write(files.dest, wpcontent);
 
       });
       next();
     }, this.async());
+
+    if (options.manifest) {
+      grunt.file.write(manifest.dest, JSON.stringify(manifest, null, 2));
+      grunt.log.writeln('  Manifest file save to ' + manifest.dest.green);
+    }
+
+    // expose to other task
+    grunt.manifest = manifest;
   });
 };
