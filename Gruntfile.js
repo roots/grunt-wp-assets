@@ -29,7 +29,7 @@ module.exports = function(grunt) {
           manifest: 'test/fixtures/assets/manifest_withConfig.json',
         },
         // Compact Format
-        src: ['test/fixtures/assets/css/main.min.css',
+        src: ['test/fixtures/assets/css/main.min.css','test/fixtures/assets/css/custom.min.css',
               'test/fixtures/assets/js/scripts.min.js'],
         dest: 'test/fixtures/index.html'
       },
@@ -79,7 +79,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      tests: ['test/fixtures/assets/{css,js}/*.{css,js}', 'test/fixtures/assets/*.json', '!test/fixtures/assets/{css,js}/{main,scripts}.min.{css,js}']
+      tests: ['test/fixtures/assets/{css,js}/*.{css,js}', 'test/fixtures/assets/*.json', '!test/fixtures/assets/{css,js}/{main,scripts,custom}.min.{css,js}']
     },
 
 

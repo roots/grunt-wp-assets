@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       querystring: {},
       manifest: false
     });
-    var manifest = grunt.manifest || {assets: {}}, summary;
+    var manifest = grunt.manifest || {css: [], js: []}, summary;
 
     options.minifyname = '.' + options.minifyname;
 
@@ -63,8 +63,8 @@ module.exports = function(grunt) {
               [basename(file, ext), suffix, ext.slice(1)].join('.');
 
         if (options.manifest) {
-          summary = { path: file, hash: suffix };
           manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
+          summary = { path: file, hash: suffix };
         }
 
         // Get target, find and change references assets to new hashed.
@@ -116,8 +116,9 @@ module.exports = function(grunt) {
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
         }
-
-        manifest.assets[grunt.util.normalizelf(original)] = summary;
+        if(typeof summary !== 'undefined'){
+          manifest[original.split('.').pop()].push(summary);
+        }
         grunt.file.write(files.dest, wpcontent);
 
       });
