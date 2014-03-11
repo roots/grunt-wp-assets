@@ -71,3 +71,10 @@ Default: `undefined`
 
 Name used as a handle for the script.
 
+## manifest
+
+Type: `String`  
+Default: `undefined`
+
+Destination of JSON manifest contain the asset path (filename), handle (if querystring use), and hash for each versioned file.
+
