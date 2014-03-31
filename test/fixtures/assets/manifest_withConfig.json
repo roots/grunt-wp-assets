@@ -4,12 +4,12 @@
     "path": "test/fixtures/assets/css/main.min.css",
     "hash": "45f8aa1a"
   },
-  "test/fixtures/assets/css/custom.min.css": {
-    "path": "test/fixtures/assets/css/custom.min.css",
-    "hash": "45f8aa1a"
-  },
   "test/fixtures/assets/js/scripts.min.js": {
     "path": "test/fixtures/assets/js/scripts.min.js",
     "hash": "bbe2121b"
+  },
+  "test/fixtures/assets/css/custom.min.css": {
+    "path": "test/fixtures/assets/css/custom.min.css",
+    "hash": "45f8aa1a"
   }
 }

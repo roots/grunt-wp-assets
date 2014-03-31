@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       querystring: {},
       manifest: false
     });
-    var manifest = grunt.manifest || {}, summary;
+    var manifest = grunt.manifest || {}, summary = {};
 
     options.minifyname = '.' + options.minifyname;
 
@@ -59,10 +59,9 @@ module.exports = function(grunt) {
               [basename(name, ext), suffix + options.minifyname, ext.slice(1)].join('.') :
               [basename(file, ext), suffix, ext.slice(1)].join('.');
 
-        if (options.manifest) {
-          manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
-          summary = { path: file, hash: suffix };
-        }
+
+        manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
+        summary = { path: file, hash: suffix };
 
         // Get target, find and change references assets to new hashed.
         var wpcontent = grunt.file.read(files.dest), match, re;

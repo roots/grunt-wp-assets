@@ -5,13 +5,13 @@
     "hash": "51ea71910a6813fdd9ad5aeb250b2857",
     "handle": "roots_main"
   },
-  "test/fixtures/assets/css/custom.min.css": {
-    "path": "test/fixtures/assets/css/custom.min.css",
-    "hash": "45f8aa1a"
-  },
   "test/fixtures/assets/js/scripts.min.js": {
     "path": "test/fixtures/assets/js/scripts.min.js",
     "hash": "71a67acb0cf0c504f45412f383d5a231",
     "handle": "roots_scripts"
+  },
+  "test/fixtures/assets/css/custom.min.css": {
+    "path": "test/fixtures/assets/css/custom.min.css",
+    "hash": "45f8aa1a"
   }
 }
