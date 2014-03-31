@@ -49,7 +49,8 @@ version: {
       algorithm: 'sha1',
       length: 4,
       format: false,
-      rename: true
+      rename: true,
+      manifest: 'assets/manifest.json',
   },
     files: {
       'scripts.php': ['assets/css/main.min.css', 'assets/js/scripts.min.js']
@@ -59,7 +60,7 @@ version: {
 
 ```
 
-This example task will rename `assets/css/main.min.css` to `assets/css/main.min.{sha1hash}.css` and `assets/js/scripts.min.js` to `assets/js/scripts.min.{sha1hash}.js` and update assets reference in `scripts.php`.
+This example task will rename `assets/css/main.min.css` to `assets/css/main.{sha1hash}.min.css` and `assets/js/scripts.min.js` to `assets/js/scripts.{sha1hash}.min.js` and update assets reference in `scripts.php`. Also generate assets summary at `assets/manifest.json`.
 
 ## Options
 
@@ -145,6 +146,9 @@ Destination of JSON manifest contain the asset path (filename), handle (if query
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                                                
+* 2014-03-31   v0.2.4        Change manifest structure,Remove support for Node < 0.10,Use verb for      
+                             README docs generator                                                      
+* 2014-03-11   v0.2.3        Add json manifest,Add test for multiple assets and add more options        
 * 2014-02-21   v0.2.2        Support files array format src/dest                                        
 * 2014-02-18   v0.2.1        Fix version task not change for the first time.                            
 * 2014-02-17   v0.2.0        Add options for `minify` and `minifyname`.,Change default option for format
