@@ -90,9 +90,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-readme');
 
   // Register tasks
-  grunt.registerTask('default', [ 'jshint', 'clean', 'version', 'simplemocha', 'readme']);
+  grunt.registerTask('default', [ 'jshint', 'clean', 'version', 'simplemocha']);
 
 };

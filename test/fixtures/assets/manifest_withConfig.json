@@ -1,19 +1,15 @@
 {
-  "css": [
-    {
-      "path": "test/fixtures/assets/css/main.min.css",
-      "hash": "45f8aa1a"
-    },
-    {
-      "path": "test/fixtures/assets/css/custom.min.css",
-      "hash": "45f8aa1a"
-    }
-  ],
-  "js": [
-    {
-      "path": "test/fixtures/assets/js/scripts.min.js",
-      "hash": "bbe2121b"
-    }
-  ],
-  "dest": "test/fixtures/assets/manifest_withConfig.json"
+  "dest": "test/fixtures/assets/manifest_withConfig.json",
+  "test/fixtures/assets/css/main.min.css": {
+    "path": "test/fixtures/assets/css/main.min.css",
+    "hash": "45f8aa1a"
+  },
+  "test/fixtures/assets/js/scripts.min.js": {
+    "path": "test/fixtures/assets/js/scripts.min.js",
+    "hash": "bbe2121b"
+  },
+  "test/fixtures/assets/css/custom.min.css": {
+    "path": "test/fixtures/assets/css/custom.min.css",
+    "hash": "45f8aa1a"
+  }
 }

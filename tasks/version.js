@@ -2,9 +2,6 @@
  * grunt-assets-wp
  * https://github.com/roots/grunt-assets-wp
  *
- * Base from:
- * https://github.com/yeoman/grunt-filerev
- *
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
  */
@@ -30,7 +27,7 @@ module.exports = function(grunt) {
       querystring: {},
       manifest: false
     });
-    var manifest = grunt.manifest || {css: [], js: []}, summary;
+    var manifest = grunt.manifest || {}, summary = {};
 
     options.minifyname = '.' + options.minifyname;
 
@@ -62,10 +59,9 @@ module.exports = function(grunt) {
               [basename(name, ext), suffix + options.minifyname, ext.slice(1)].join('.') :
               [basename(file, ext), suffix, ext.slice(1)].join('.');
 
-        if (options.manifest) {
-          manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
-          summary = { path: file, hash: suffix };
-        }
+
+        manifest.dest = (typeof options.manifest === 'string' || options.manifest instanceof String) ? options.manifest : path.dirname(files.dest) + '/manifest.json';
+        summary = { path: file, hash: suffix };
 
         // Get target, find and change references assets to new hashed.
         var wpcontent = grunt.file.read(files.dest), match, re;
@@ -117,7 +113,7 @@ module.exports = function(grunt) {
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
         }
         if(typeof summary !== 'undefined'){
-          manifest[original.split('.').pop()].push(summary);
+          manifest[file] = summary;
         }
         grunt.file.write(files.dest, wpcontent);
 

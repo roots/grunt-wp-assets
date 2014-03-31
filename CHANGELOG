@@ -1,3 +1,14 @@
+v0.2.4:
+  date: 2014-03-31
+  changes:
+    - Change manifest structure
+    - Remove support for Node < 0.10
+    - Use verb for README docs generator
+v0.2.3:
+  date: 2014-03-11
+  changes:
+    - Add json manifest
+    - Add test for multiple assets and add more options
 v0.2.2:
   date: 2014-02-21
   changes:
