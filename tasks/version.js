@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       length: 8,
       rename: false,
       querystring: {},
-      manifest: false
+      manifest: false,
+      summaryOnly: false
     });
     var manifest = grunt.manifest || {}, summary = {};
 
@@ -117,8 +118,9 @@ module.exports = function(grunt) {
         if(typeof summary !== 'undefined'){
           manifest[file] = summary;
         }
-        grunt.file.write(files.dest, wpcontent);
-
+        if (!options.summaryOnly) {
+          grunt.file.write(files.dest, wpcontent);
+        }
       });
       next();
     }, this.async());
