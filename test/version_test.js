@@ -27,7 +27,6 @@ var hashed = function(filepath, algorithm, length, format, minify, minifyname) {
         [path.basename(filepath, ext), suffix + minifyname, ext.slice(1)].join('.') :
         [path.basename(filepath, ext), suffix, ext.slice(1)].join('.');
 };
-console.log(hashed(css));
 
 describe('version task', function () {
 
