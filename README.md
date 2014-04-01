@@ -160,6 +160,13 @@ Sample `manifest.json`
 }
 ```
 
+### summaryOnly
+
+Type: `Boolean`  
+Default: `false`
+
+Generate manifest json without make change to destination script.
+
 
 
 ## Release History
