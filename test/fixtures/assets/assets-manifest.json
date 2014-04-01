@@ -1,11 +1,11 @@
 {
   "dest": "test/fixtures/assets/assets-manifest.json",
   "test/fixtures/assets/css/main.min.css": {
-    "path": "test/fixtures/assets/css/main.min.css",
+    "path": "test/fixtures/assets/css/main.51ea7191.min.css",
     "hash": "51ea7191"
   },
   "test/fixtures/assets/js/scripts.min.js": {
-    "path": "test/fixtures/assets/js/scripts.min.js",
+    "path": "test/fixtures/assets/js/scripts.71a67acb.min.js",
     "hash": "71a67acb"
   }
 }
