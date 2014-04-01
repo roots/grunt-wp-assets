@@ -13,5 +13,6 @@
   "test/fixtures/assets/css/custom.min.css": {
     "path": "test/fixtures/assets/css/custom.min.css",
     "hash": "45f8aa1a"
-  }
+  },
+  "querystring": true
 }

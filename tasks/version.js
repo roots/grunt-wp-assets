@@ -82,6 +82,8 @@ module.exports = function(grunt) {
 
           }
 
+          manifest.querystring = true;
+
           // Only rename the source if manifest disable
           if (!options.manifest) {
             wpcontent = wpcontent.replace(re, newName);
