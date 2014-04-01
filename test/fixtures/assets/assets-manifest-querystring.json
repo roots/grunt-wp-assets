@@ -1,5 +1,5 @@
 {
-  "dest": "test/fixtures/assets/manifest.json",
+  "dest": "test/fixtures/assets/assets-manifest-querystring.json",
   "test/fixtures/assets/css/main.min.css": {
     "path": "test/fixtures/assets/css/main.min.css",
     "hash": "51ea71910a6813fdd9ad5aeb250b2857",
@@ -10,9 +10,5 @@
     "hash": "71a67acb0cf0c504f45412f383d5a231",
     "handle": "roots_js"
   },
-  "querystring": true,
-  "test/fixtures/assets/css/custom.min.css": {
-    "path": "test/fixtures/assets/css/custom.min.css",
-    "hash": "45f8aa1a"
-  }
+  "querystring": true
 }

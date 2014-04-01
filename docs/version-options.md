@@ -76,5 +76,30 @@ Name used as a handle for the script.
 Type: `String`  
 Default: `undefined`
 
-Destination of JSON manifest contain the asset path (filename), handle (if querystring use), and hash for each versioned file.
+Destination of JSON manifest contain the asset `path` (filename path), `handle` and `querystring` (if querystring use), and `hash` for each versioned file.
+
+Sample `manifest.json`
+```json
+{
+  "dest": "assets/manifest.json",
+  "assets/css/main.min.css": {
+    "path": "assets/css/main.min.css",
+    "hash": "060865602e1c6ad3e02ee2ebf60799a0",
+    "handle": "roots_css"
+  },
+  "assets/js/scripts.min.js": {
+    "path": "assets/js/scripts.min.js",
+    "hash": "0fc6af96786d8f267c8686338a34cd38",
+    "handle": "roots_js"
+  },
+  "querystring": true
+}
+```
+
+## summaryOnly
+
+Type: `Boolean`  
+Default: `false`
+
+Generate manifest json without make change to destination script.
 

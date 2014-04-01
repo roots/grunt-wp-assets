@@ -8,6 +8,7 @@
     "path": "test/fixtures/assets/js/scripts.min.js",
     "hash": "bbe2121b"
   },
+  "querystring": true,
   "test/fixtures/assets/css/custom.min.css": {
     "path": "test/fixtures/assets/css/custom.min.css",
     "hash": "45f8aa1a"

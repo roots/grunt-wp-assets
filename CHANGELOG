@@ -1,3 +1,8 @@
+v0.2.5:
+  date: 2014-04-01
+  changes:
+    - Add `querystring` to manifest.json when enable
+    - Update manifest json sample
 v0.2.4:
   date: 2014-03-31
   changes:

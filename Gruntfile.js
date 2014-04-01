@@ -21,6 +21,31 @@ module.exports = function(grunt) {
           'test/fixtures/script2.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
         }
       },
+      roots: {
+        options: {
+          summaryOnly: true,
+          length: 8,
+          manifest: 'test/fixtures/assets/assets-manifest.json',
+        },
+        files: {
+          'test/fixtures/script3.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
+        }
+      },
+      rootsQuerystring: {
+        options: {
+          summaryOnly: true,
+          format: true,
+          length: 32,
+          manifest: 'test/fixtures/assets/assets-manifest-querystring.json',
+          querystring: {
+            style: 'roots_css',
+            script: 'roots_js'
+          }
+        },
+        files: {
+          'test/fixtures/script3.php': ['test/fixtures/assets/css/main.min.css', 'test/fixtures/assets/js/scripts.min.js']
+        }
+      },
       withConfig: {
         options: {
           format: true,
@@ -40,8 +65,8 @@ module.exports = function(grunt) {
           length: 32,
           manifest: 'test/fixtures/assets/manifest.json',
           querystring: {
-            style: 'roots_main',
-            script: 'roots_scripts'
+            style: 'roots_css',
+            script: 'roots_js'
           }
         },
         files: {
