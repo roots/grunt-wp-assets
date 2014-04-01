@@ -12,7 +12,7 @@
   },
   "querystring": true,
   "test/fixtures/assets/css/custom.min.css": {
-    "path": "test/fixtures/assets/css/custom.min.css",
+    "path": "test/fixtures/assets/css/45f8aa1a.custom.min.css",
     "hash": "45f8aa1a"
   }
 }

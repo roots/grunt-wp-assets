@@ -114,6 +114,7 @@ module.exports = function(grunt) {
           wpcontent = wpcontent.replace(re, newName);
           var status = (options.rename) ? ' rename' : ' change';
           grunt.log.writeln('  ' + file.grey + status + ' to ' + newName.green);
+          summary.path = path.dirname(file) + '/' + newName;
         }
         if(typeof summary !== 'undefined'){
           manifest[file] = summary;
