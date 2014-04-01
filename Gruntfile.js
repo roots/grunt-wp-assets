@@ -40,8 +40,8 @@ module.exports = function(grunt) {
           length: 32,
           manifest: 'test/fixtures/assets/manifest.json',
           querystring: {
-            style: 'roots_main',
-            script: 'roots_scripts'
+            style: 'roots_css',
+            script: 'roots_js'
           }
         },
         files: {
