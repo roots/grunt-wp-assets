@@ -23,7 +23,7 @@ grunt.loadNpmTasks('grunt-wp-assets');
 
 ## Usage Examples
 
-### defaut config
+### default config
 
 
 ```javascript
